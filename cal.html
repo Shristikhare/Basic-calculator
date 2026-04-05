@@ -1,0 +1,105 @@
+<!--Basic Calculator Build a functional calculator that can perform basic arithmetic operations. HTML: Use a table or a grid of buttons for numbers (0-9), operators (+, -, *, /), equals, and clear functions. Include a display area for input and results.
+CSS: Style the calculator buttons and display to look like a real calculator. Ensure the layout is clean and the buttons are easy to press. JavaScript: Manage the state of the calculator (current input, previous input, operation). Implement the logic for
+each button click and the arithmetic functions. Handle edge cases like division by zero and continuous operations. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>calculator</title>
+</head>
+<style>
+    body {
+  font-family: sans-serif;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.calculator {
+  background: rosybrown;
+  padding: 20px;
+  border-radius: 20px;
+}
+#display {
+   width: 100%;
+  height: 90px;
+  font-size: 20px;
+  text-align: right;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+  color: aliceblue;
+}
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 60px);
+  gap: 10px;
+}
+button {
+  height: 60px;
+  font-size: 35px;
+  border: none;
+  border-radius: 40px;
+  background: burlywood;
+  color: aliceblue;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+button:hover {
+  background: #666;
+}
+.zero {
+  grid-column: span 3;
+}
+</style>
+<body>
+     <div class="calculator">
+    <input type="text" id="display" disabled />
+    <div class="buttons">
+      <button onclick="clearDisplay()">C</button>
+      <button onclick="append('/')">÷</button>
+      <button onclick="append('*')">*</button>
+      <button onclick="append('-')">-</button>
+
+      <button onclick="append('7')">7</button>
+      <button onclick="append('8')">8</button>
+      <button onclick="append('9')">9</button>
+      <button onclick="append('+')">+</button>
+
+      <button onclick="append('4')">4</button>
+      <button onclick="append('5')">5</button>
+      <button onclick="append('6')">6</button>
+      <button onclick="calculate()">=</button>
+
+      <button onclick="append('1')">1</button>
+      <button onclick="append('2')">2</button>
+      <button onclick="append('3')">3</button>
+      <button onclick="append('.')">.</button>
+      <button onclick="append('0')" class="zero">0</button>
+      <button onclick="backspace()">⌫</button>
+    </div>
+  </div>
+    <script>
+function append(value) {
+  document.getElementById("display").value += value;
+}
+function clearDisplay() {
+  document.getElementById("display").value = "";
+}
+function calculate() {
+  try {
+    document.getElementById("display").value = eval(document.getElementById("display").value);
+  } catch {
+    document.getElementById("display").value = "Error";
+  }
+}
+function backspace() {
+  let display = document.getElementById("display");
+  display.value = display.value.slice(0, -1);
+}
+</script>
+</body>
+</html>
